@@ -1,26 +1,12 @@
 import React from 'react';
-
-const mats = [
-    {
-      matName: 'MAT Name 1',
-      dataRefresh: true,
-      powerBiRefresh: true,
-    },
-    {
-        matName: 'MAT Name 2',
-        dataRefresh: false,
-        powerBiRefresh: true,
-    },
-    {
-        matName: 'MAT Name 3',
-        dataRefresh: true,
-        powerBiRefresh: false,
-    }
-  ];
+import useMatsService from '../../services/matstatus.service';
 
 const Dashboard: React.FC = () => {
-    return (
+    const service = useMatsService();
+
+    return (      
         <div className='flex grow-into-flexbox mt-16' data-testid='dashboard'>
+            {service.status === 'loading' && <div>Loading...</div>}
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
@@ -48,10 +34,10 @@ const Dashboard: React.FC = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {mats.map(mat => (
-                  <tr key={mat.matName}>
+                {service.status === 'loaded' && service.payload.map(mat => (
+                  <tr key={mat.id}>
                     <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm font-medium text-gray-900">{mat.matName}</div>
+                        <div className="text-sm font-medium text-gray-900">{mat.name}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                     <span
@@ -75,7 +61,8 @@ const Dashboard: React.FC = () => {
                   </tr>
                 ))}
               </tbody>
-            </table>        
+            </table> 
+            {service.status === 'error' && (<div>Error, backend not working</div>)}       
         </div>
     )
 }

@@ -2,16 +2,19 @@
     "mats" : [{
        "name": "Mat Name 1", 
        "dataRefresh": true, 
-       "powerBiRefresh": true
+       "powerBiRefresh": true,
+       "id": 1
      },
      {
         "name": "Mat Name 2", 
         "dataRefresh": true, 
-        "powerBiRefresh": false
+        "powerBiRefresh": false,
+        "id": 2
       },
       {
         "name": "Mat Name 1", 
         "dataRefresh": false, 
-        "powerBiRefresh": true
+        "powerBiRefresh": true,
+        "id": 3
       }]
   }
