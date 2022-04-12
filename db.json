@@ -1,0 +1,17 @@
+{
+    "mats" : [{
+       "name": "Mat Name 1", 
+       "dataRefresh": true, 
+       "powerBiRefresh": true
+     },
+     {
+        "name": "Mat Name 2", 
+        "dataRefresh": true, 
+        "powerBiRefresh": false
+      },
+      {
+        "name": "Mat Name 1", 
+        "dataRefresh": false, 
+        "powerBiRefresh": true
+      }]
+  }
