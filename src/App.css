@@ -7,3 +7,7 @@
 header {
   height: 4rem;
 }
+
+body {
+  background-color: rgb(241, 242, 243);
+}
