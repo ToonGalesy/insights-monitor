@@ -1,10 +1,16 @@
 import React from 'react';
 import useMatsService from '../../services/matstatus.service';
+import { useNavigate } from "react-router-dom";
 
 const Dashboard: React.FC = () => {
     const service = useMatsService();
+    const navigate = useNavigate();
 
-    return (      
+    const handleClick = (id: Number) => {
+      navigate(`/mat/${id}`);
+    }
+
+    return (  
         <div className='flex grow-into-flexbox mt-16' data-testid='dashboard'>
             {service.status === 'loading' && <div>Loading...</div>}
             <table className="min-w-full divide-y divide-gray-200">
@@ -35,7 +41,7 @@ const Dashboard: React.FC = () => {
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {service.status === 'loaded' && service.payload.map(mat => (
-                  <tr key={mat.id}>
+                  <tr key={mat.id} onClick={()=> handleClick(mat.id)}>
                     <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm font-medium text-gray-900">{mat.name}</div>
                     </td>
@@ -63,7 +69,7 @@ const Dashboard: React.FC = () => {
               </tbody>
             </table> 
             {service.status === 'error' && (<div>Error, backend not working</div>)}       
-        </div>
+        </div>  
     )
 }
 
